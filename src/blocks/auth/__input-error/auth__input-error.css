@@ -1,0 +1,11 @@
+.auth__input-error {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.25;
+  color: rgba(255, 0, 0, 1);
+  transition: 0.3s;
+  white-space: break-spaces;
+  opacity: 1;
+  display: block;
+}

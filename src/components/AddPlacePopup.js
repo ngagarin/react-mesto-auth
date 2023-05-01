@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PopupWithForm from './PopupWithForm';
 import { useInput } from '../hooks/FormValidator.js';
 
@@ -7,10 +7,10 @@ function AddPlacePopup({ isOpen, onAddPlace, isLoading, ...commonProps }) {
   const place = useInput('', { isEmpty: true, minLength: 2 })
   const picture = useInput('', { isEmpty: true, isUrl: true });
 
-  const [title, setTitle] = React.useState('');
-  const [link, setLink] = React.useState('');
+  const [title, setTitle] = useState('');
+  const [link, setLink] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpen) {
       setTitle('');
       setLink('');
@@ -94,6 +94,7 @@ function AddPlacePopup({ isOpen, onAddPlace, isLoading, ...commonProps }) {
           )
         }
       </label>
+
     </PopupWithForm>
   )
 }

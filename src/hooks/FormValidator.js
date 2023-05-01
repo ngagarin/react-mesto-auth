@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
 
-export const useValidation = (value, validations) => {
+export const isPasswordMatch = (value, compareValue) => {
+  return value === compareValue;
+};
+
+export const useValidation = (value, validations, password) => {
   const [isEmpty, setEmpty] = useState(true)
   const [minLengthError, setMinLengthError] = useState(false)
   const [maxLengthError, setMaxLenghtError] = useState(false)
   const [urlError, setUrlError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
+  const [passwordMatchError, setPasswordMatchError] = useState(false)
   const [inputValid, setInputValid] = useState(false)
 
   useEffect(() => {
@@ -23,24 +29,32 @@ export const useValidation = (value, validations) => {
           const pattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
           setUrlError(!pattern.test(value));
           break;
+        case 'isEmail':
+          const patternEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+          setEmailError(!patternEmail.test(value));
+          break;
+          case 'isPasswordMatch':
+            isPasswordMatch(value, password) ? setPasswordMatchError(false) : setPasswordMatchError(true);
+            break;
       }
     }
-
-  }, [value])
+  }, [value, password])
 
   useEffect(() => {
-    if (isEmpty || minLengthError || maxLengthError || urlError) {
+    if (isEmpty || minLengthError || maxLengthError || urlError || emailError || passwordMatchError) {
       setInputValid(false)
     } else {
       setInputValid(true)
     }
-  }, [isEmpty, minLengthError, maxLengthError, urlError])
+  }, [isEmpty, minLengthError, maxLengthError, urlError, emailError, passwordMatchError])
 
   return {
     isEmpty,
     minLengthError,
     maxLengthError,
     urlError,
+    emailError,
+    passwordMatchError,
     inputValid
   }
 }
@@ -65,12 +79,10 @@ export const useInput = (initialValue, validations) => {
 
   return {
     value,
+    isDirty,
     onChange,
     onFocus,
-    isDirty,
     resetValidation,
     ...valid
   }
 }
-
-

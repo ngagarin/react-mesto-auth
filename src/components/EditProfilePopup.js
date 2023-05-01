@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PopupWithForm from './PopupWithForm';
 import { useInput } from '../hooks/FormValidator.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -6,12 +6,12 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function EditProfilePopup({ isOpen, onUpdateUser, isLoading, ...commonProps }) {
 
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
-  const currentUser = React.useContext(CurrentUserContext);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const currentUser = useContext(CurrentUserContext);
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOpen) {
       setName(currentUser.name);
       setDescription(currentUser.about);
@@ -100,6 +100,7 @@ function EditProfilePopup({ isOpen, onUpdateUser, isLoading, ...commonProps }) {
           )
         }
       </label>
+
     </PopupWithForm>
   )
 }

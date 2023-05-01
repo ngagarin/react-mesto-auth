@@ -1,0 +1,6 @@
+.auth__item {
+  display: flex;
+  flex-direction: column;
+  min-height: 65px;
+  width: 100%;
+}

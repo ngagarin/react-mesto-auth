@@ -25,7 +25,14 @@ function ConfirmationPopup({ card, onClose, onCloseEsc, onCloseOverlay, onCardDe
         <button onClick={onClose} className="popup__close-button" type="button" aria-label="Закрыть окно" />
         <h2 className="popup__header">Удалить карточку?</h2>
         <form name={`edit-confirmation-form`} className="form form_type_delete-card" noValidate >
-          <button onClick={handleDeleteClick} className="form__submit" type="submit" aria-label="Удалить карточку">{isLoading ? "Удаление..." : "Да"}</button>
+          <button
+            onClick={handleDeleteClick}
+            className="form__submit"
+            type="submit"
+            aria-label="Удалить карточку"
+          >
+            {isLoading ? "Удаление..." : "Да"}
+          </button>
         </form>
       </div>
     </div>

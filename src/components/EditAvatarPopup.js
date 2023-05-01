@@ -1,9 +1,9 @@
-import React, { useEffect }  from "react";
+import React, { useEffect, useRef }  from "react";
 import PopupWithForm from './PopupWithForm';
 import { useInput } from '../hooks/FormValidator.js';
 
 function EditAvatarPopup({ isOpen, onUpdateAvatar, isLoading, ...commonProps }) {
-  const ref = React.useRef();
+  const ref = useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -56,6 +56,7 @@ function EditAvatarPopup({ isOpen, onUpdateAvatar, isLoading, ...commonProps }) 
           )
         }
       </label>
+
     </PopupWithForm>
   )
 }

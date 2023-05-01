@@ -22,8 +22,17 @@ function PopupWithForm({ isOpen, onClose, onCloseEsc, onCloseOverlay, name, titl
         <h2 className="popup__header">{title}</h2>
         <form name={`edit-${name}-form`} className="form" onSubmit={onSubmit} noValidate >
           <fieldset className="form__set">
+
             {children}
-            <button className={`form__submit ${!inputValid ? "form__submit_disabled" : ""}`} type="submit" disabled={!inputValid}>{isLoading ? submitTextLoading : submitText}</button>
+
+            <button
+              className={`form__submit ${!inputValid ? "form__submit_disabled" : ""}`}
+              type="submit"
+              disabled={!inputValid}
+            >
+              {isLoading ? submitTextLoading : submitText}
+            </button>
+
           </fieldset>
         </form>
       </div>
