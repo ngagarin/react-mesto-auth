@@ -1,0 +1,4 @@
+.page_type_hidden {
+  overflow : hidden;
+  /* запретил скролл при открытом popup*/
+}

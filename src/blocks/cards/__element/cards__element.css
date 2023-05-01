@@ -1,0 +1,23 @@
+.cards__element {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  row-gap: 20px;
+  /*27px for PixelPerfect*/
+  column-gap: 17px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media screen and (max-width: 900px) {
+  .cards__element {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 36px;
+  }
+}
+
+@media screen and (max-width: 571px) {
+  .cards__element {
+    margin-top: 36px;
+    grid-template-columns: 100%;
+  }
+}

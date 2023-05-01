@@ -1,0 +1,49 @@
+.profile__button_type_add {
+  margin-top: 35px;
+  width: 150px;
+  height: 50px;
+  border-width: 2px;
+  border-radius: 2px;
+  background-image: url(../../../../images/profile/add-button.svg);
+  background-size: 22px 22px;
+}
+
+@media screen and (max-width: 1000px) {
+  .profile__button_type_add {
+    width: 140px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .profile__button_type_add {
+    width: 130px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .profile__button_type_add {
+    width: 120px;
+  }
+}
+
+@media screen and (max-width: 731px) {
+  .profile__button_type_add {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 571px) {
+  .profile__button_type_add {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile__button_type_add {
+    margin-top: 33px;
+    /*36px по макету*/
+    background-size: 16px 16px;
+  }
+}

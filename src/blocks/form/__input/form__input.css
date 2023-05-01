@@ -1,0 +1,21 @@
+.form__input {
+  border: 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding-bottom: 9px;
+  /*13px в шаблоне*/
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .form__input {
+    padding-bottom: 8px;
+  }
+}

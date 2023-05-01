@@ -1,0 +1,28 @@
+.cards {
+  margin-top: 51px;
+  min-height: 40vh;
+}
+
+@media screen and (max-width: 900px) {
+  .cards {
+    margin-top: 36px;
+  }
+}
+
+@media screen and (max-height: 900px) {
+  .cards {
+    min-height: 25vh;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .cards {
+    min-height: 15vh;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .cards {
+    min-height: 2vh;
+  }
+}

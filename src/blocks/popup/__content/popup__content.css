@@ -1,0 +1,21 @@
+.popup__content {
+  align-self: center;
+  width: 430px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  position: relative;
+  /*для позиционирования кнопки закрытия формы*/
+}
+
+@media screen and (max-width: 571px) {
+  .popup__content {
+    width: calc(100% - 2 * 48px);
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .popup__content {
+    width: calc(100% - 2 * 19px);
+  }
+}
