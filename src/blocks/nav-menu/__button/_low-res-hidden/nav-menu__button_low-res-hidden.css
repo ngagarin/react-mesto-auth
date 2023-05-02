@@ -1,0 +1,5 @@
+@media screen and (max-width: 571px) {
+  .nav-menu__button_low-res-hidden {
+    display: none;
+  }
+}

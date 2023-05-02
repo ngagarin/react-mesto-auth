@@ -1,0 +1,5 @@
+@media screen and (max-width: 619px) {
+  .nav-popup_is-open {
+    margin-top: 0;
+  }
+}

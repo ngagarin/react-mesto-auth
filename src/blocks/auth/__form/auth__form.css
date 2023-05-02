@@ -10,3 +10,9 @@
     width: 260px;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .auth__form {
+    width: calc(100% - 2 * 19px);
+  }
+}

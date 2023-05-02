@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 
 import Main from './Main';
 import Header from './Header';
+import NavMenu from './NavMenu';
 import Footer from './Footer';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -35,9 +36,10 @@ function App() {
 
   const [isLoading, setLoading] = useState(false)
 
+  const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [emailValue, setEmailValue] = useState(null);
-  const [popupStatus, setPopupStatus] = useState({ image: '', message: '' });
+  const [authStatus, setAuthStatus] = useState({ image: '', message: '' });
   const [infoTooltip, setInfoTooltip] = useState(false);
   const navigate = useNavigate();
 
@@ -51,7 +53,7 @@ function App() {
         navigate("/");
       })
       .catch(() => {
-        setPopupStatus({ image: crossImg, message: 'Что-то пошло не так! Попробуйте еще раз.' });
+        setAuthStatus({ image: crossImg, message: 'Что-то пошло не так! Попробуйте еще раз.' });
         handleInfoTooltip();
       }).finally(() => { setLoading(false) });
   };
@@ -60,11 +62,11 @@ function App() {
     setLoading(true);
     signUp(email, password)
       .then(() => {
-        setPopupStatus({ image: checkmarkImg, message: 'Вы успешно зарегистрировались!' });
-        navigate("/signin");
+        setAuthStatus({ image: checkmarkImg, message: 'Вы успешно зарегистрировались!' });
+        navigate("/sign-in");
       })
       .catch(() => {
-        setPopupStatus({ image: crossImg, message: 'Что-то пошло не так! Попробуйте еще раз.' });
+        setAuthStatus({ image: crossImg, message: 'Что-то пошло не так! Попробуйте еще раз.' });
       })
       .finally(() => {
         setLoading(false);
@@ -76,7 +78,7 @@ function App() {
     setIsLoggedIn(false);
     localStorage.removeItem('jwt');
     setEmailValue(null);
-    navigate("/signin");
+    navigate("/sign-in");
   };
 
   function handleInfoTooltip() {
@@ -207,20 +209,36 @@ function App() {
     }
   }
 
+  const handleNavMenuOpen = () => {
+    setIsNavMenuOpen(!isNavMenuOpen);
+    ;
+  }
+
+  document.body.classList.add('page');
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
+      <>
 
         <Routes>
+
           <Route exact path='/'
             element={
               <>
-                <Header
-                  title='Выйти'
-                  route=''
-                  email={emailValue}
+                <NavMenu
+                  isNavMenuOpen={isNavMenuOpen}
+                  userEmail={emailValue}
                   onClick={handleLogOut}
                 />
+                <Header
+                  buttonText='Выйти'
+                  userEmail={emailValue}
+                  handleLogOut={handleLogOut}
+                  isNavMenuOpen={isNavMenuOpen}
+                  handleNavMenuOpen={handleNavMenuOpen}
+                  hideNavLink={true}
+                />
+
                 <ProtectedRoute
                   component={Main}
                   isLoggedIn={isLoggedIn}
@@ -234,16 +252,19 @@ function App() {
                   onConfirmCardDelete={handleConfimationClick}
                   onCardLike={handleCardLike}
                 />
+                <Footer />
               </>
             }
           />
 
-          <Route path='/signup'
+          <Route path='/sign-up'
             element={
               <>
                 <Header
+                  isNavMenuOpen={isNavMenuOpen}
                   title='Войти'
-                  route='/signin'
+                  route='/sign-in'
+                  hideNavItem={true}
                 />
                 <Register
                   onRegister={handleRegister}
@@ -253,12 +274,14 @@ function App() {
             }
           />
 
-          <Route path='/signin'
+          <Route path='/sign-in'
             element={
               <>
                 <Header
+                  isNavMenuOpen={isNavMenuOpen}
                   title='Регистрация'
-                  route='/signup'
+                  route='/sign-up'
+                  hideNavItem={true}
                 />
                 <Login
                   onLogin={handleLogin}
@@ -270,15 +293,14 @@ function App() {
 
           <Route exact path="*"
             element={
-              isLoggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />
+              isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />
             }
           />
+
         </Routes>
 
-        <Footer />
-
         <InfoTooltip
-          popupStatus={popupStatus}
+          authStatus={authStatus}
           isOpen={infoTooltip}
           onClose={closeAllPopups}
           onCloseEsc={closePopupWithEsc}
@@ -328,7 +350,7 @@ function App() {
           onCloseOverlay={closePopupWithClickOnOverlay}
         />
 
-      </div>
+      </>
     </CurrentUserContext.Provider>
   );
 }

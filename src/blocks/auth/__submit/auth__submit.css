@@ -1,17 +1,19 @@
 .auth__submit {
   margin: 0;
   padding: 0;
-  margin-top: 130px;
+  margin-top: 80px;
   height: 50px;
   width: 100%;
   background-color: #fff;
   border: none;
   border-radius: 2px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
   cursor: pointer;
   transition: opacity .2s;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
 }
 
 .auth__submit:hover {
@@ -23,6 +25,6 @@
     margin-top: 100px;
     height: 46px;
     font-size: 16px;
-    line-height: 20px;
+    line-height: 19px;
   }
 }

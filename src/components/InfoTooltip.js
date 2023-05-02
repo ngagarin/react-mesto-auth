@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function InfoTooltip({ popupStatus, isOpen, onClose, onCloseEsc, onCloseOverlay }) {
+function InfoTooltip({ authStatus, isOpen, onClose, onCloseEsc, onCloseOverlay }) {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('page_type_hidden');
@@ -17,8 +17,8 @@ function InfoTooltip({ popupStatus, isOpen, onClose, onCloseEsc, onCloseOverlay 
     <section className={`popup popup_type_infoTooltip ${isOpen && 'popup_opened'}`}>
       <figure className="popup__content">
         <button onClick={onClose} className="popup__close-button" type="button"></button>
-        <img src={popupStatus.image} alt={`Информационное сообщение: ${popupStatus.message}`} className="popup__icon" />
-        <figcaption className="popup__icon-caption">{popupStatus.message}</figcaption>
+        <img src={authStatus.image} alt={`Информационное сообщение: ${authStatus.message}`} className="popup__icon" />
+        <figcaption className="popup__icon-caption">{authStatus.message}</figcaption>
       </figure>
     </section>
   );
